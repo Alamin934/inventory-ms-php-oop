@@ -16,9 +16,21 @@
 			<div class="card mx-auto" style="width: 40rem;">
 				<div class="card-header">Register</div>
 					<div class="card-body">
-						<form id="register_form" autocomplete="off">
+						<form id="register_form" onsubmit="return false" autocomplete="off">
 							<div class="form-group mb-3">
-								<label for="username">Full Name</label>
+								<label for="first_name">First Name</label>
+								<input type="text" name="first_name" class="form-control" id="first_name" placeholder="Enter First Name">
+								<small id="u_error" class="form-text text-muted"></small>
+							</div>
+
+							<div class="form-group mb-3">
+								<label for="last_name">Last Name</label>
+								<input type="text" name="last_name" class="form-control" id="last_name" placeholder="Enter Last Name">
+								<small id="u_error" class="form-text text-muted"></small>
+							</div>
+
+							<div class="form-group mb-3">
+								<label for="username">Username</label>
 								<input type="text" name="username" class="form-control" id="username" placeholder="Enter Username">
 								<small id="u_error" class="form-text text-muted"></small>
 							</div>
@@ -44,9 +56,9 @@
 							<div class="form-group mb-3">
 								<label for="usertype">Usertype</label>
 								<select name="usertype" class="form-control" id="usertype">
-								<option value="">Choose User Type</option>
-								<option value="Admin">Admin</option>
-								<option value="Other">Other</option>
+									<option value="">Choose User Type</option>
+									<option value="1">Admin</option>
+									<option value="0">Other</option>
 								</select>
 								<small id="t_error" class="form-text text-muted"></small>
 							</div>
