@@ -18,13 +18,18 @@ class Database{
     public function insert($table, $data=[]){
         if($this->tableExists($table)){
             $tableKeys = implode(" , ", array_keys($data));
-            $tableValues = implode(" , ", $data);
-            echo $sql = $this->mysqli("INSERT INTO $table($tableKeys) VALUES('$tableValues')");
+            $tableValues = implode("' , '", $data);
+            $sql = "INSERT INTO $table($tableKeys) VALUES('$tableValues')";
+            if($this->mysqli->query($sql)){
+                array_push($this->result, $this->mysqli->insert_id);
+            }else{
+                array_push($this->result, $this->mysqli->error);
+            }
         }
     }
 
     public function select($table, $row="*", $join=null, $where=null, $orderBy=null, $limit=null){
-        if($this->tableExists){
+        if($this->tableExists($table)){
             $sql = "SELECT $row FROM $table";
             if($join != null){
                 $sql.= " JOIN $join";
@@ -41,25 +46,24 @@ class Database{
             
             $query = $this->mysqli->query($sql);
             if($query){
-                $this->result = $this->mysqli->affected_rows;
+                $this->result = $query->fetch_all(MYSQLI_ASSOC);
                 return true;
             }else{
-                $this->result = $this->mysqli->error;
+                array_push($this->result, $this->mysqli->error);
                 return false;
             }
         }
     }
 
     private function tableExists($table){
-        if($this->mysqli){
-            $sql = "SHOW TABLE FROM $this->db_name";
-            $tableInDb = $this->mysqli_query($sql);
-            if($tableInDb){
-                if($tableInDb->num_rows == 1){
-                    return true;
-                }else{
-                    return false;
-                }
+        $sql = "SHOW TABLES FROM $this->db_name LIKE '$table'";
+        $tableInDb = $this->mysqli->query($sql);
+        if($tableInDb){
+            if($tableInDb->num_rows == 1){
+                return true;
+            }else{
+                array_push($this->result, $table." doesn't exists in this DB");
+                return false;
             }
         }
     }
@@ -68,7 +72,14 @@ class Database{
         $data = trim($data);
         $data = stripslashes($data);
         $data = htmlspecialchars($data);
-        return $this->mysqli->real_escape_string($data);
+        $data = $this->mysqli->real_escape_string($data);
+        return $data;
+    }
+
+    public function get_result(){
+        $message = $this->result;
+        $this->result = [];
+        return $message;
     }
 
     public function __distruct(){

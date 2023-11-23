@@ -6,11 +6,13 @@
         <title>Inventory Management System</title>
         <link rel="stylesheet" href="includes/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="includes/css/bootstrap.min.css">
+        <link rel="stylesheet" href="includes/css/style.css">
     </head>
     <body> 
 
 		<div class="overlay"><div class="loader"></div></div>
-
+		<!-- Message -->
+        <div class="alert alert-success" role="alert"></div>
 
 		<div class="container mt-2" id="index">
 			<div class="card mx-auto" style="width: 40rem;">
@@ -37,7 +39,7 @@
 
 							<div class="form-group mb-3">
 								<label for="email">Email address</label>
-								<input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+								<input type="text" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
 								<small id="e_error" class="form-text text-muted">We'll never share your email with anyone else.</small>
 							</div>
 
@@ -58,7 +60,7 @@
 								<select name="usertype" class="form-control" id="usertype">
 									<option value="">Choose User Type</option>
 									<option value="1">Admin</option>
-									<option value="0">Other</option>
+									<option value="2">Other</option>
 								</select>
 								<small id="t_error" class="form-text text-muted"></small>
 							</div>
