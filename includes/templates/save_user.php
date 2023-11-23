@@ -19,10 +19,28 @@
         echo $error = "User Type is Not Set";
     }else{
         $obj = new Database();
-        $first_name = $obj->escapeString($_POST['first_name']);
-        $last_name = $obj->escapeString($_POST['last_name']);
-        $user_name = $obj->escapeString($_POST['username']);
-        $email = $obj->escapeString($_POST['email']);
-        $password = md5($obj->escapeString($_POST['password1']));
-        $user_type = $obj->escapeString($_POST['usertype']);
+        $register_data = [
+            'first_name' => $obj->escapeString($_POST['first_name']),
+            'last_name' => $obj->escapeString($_POST['last_name']),
+            'user_name' => $obj->escapeString($_POST['username']),
+            'email' => $obj->escapeString($_POST['email']),
+            'password' => md5($obj->escapeString($_POST['password1'])),
+            'user_type' => $obj->escapeString($_POST['usertype']),
+            'register_date' => date('d-M-Y'),
+            'last_login' => date('d-M-Y h:i:s'),
+            'notes' => '',
+        ];
+
+        $check_username = $obj->select('users', 'username', null, "username = '{$register_data["user_name"]}'", null, null);
+        $username_exist = $obj->get_result();
+        
+        $check_email = "SELECT email FROM users WHERE email = '{$register_data["email"]}'";
+        $email_query = $obj->mysqli->query($check_email);
+        if($username_query){
+            echo $error = "Username Already Exists";
+        }elseif($email_query){
+            echo $error = "Email Already Exists";
+        }else{
+            $obj->insert('users');
+        }
     }

@@ -23,6 +23,33 @@ class Database{
         }
     }
 
+    public function select($table, $row="*", $join=null, $where=null, $orderBy=null, $limit=null){
+        if($this->tableExists){
+            $sql = "SELECT $row FROM $table";
+            if($join != null){
+                $sql.= " JOIN $join";
+            }
+            if($where != null){
+                $sql.= " WHERE $where";
+            }
+            if($orderBy != null){
+                $sql.= " ORDER BY $orderBy";
+            }
+            if($limit != null){
+                $sql.= " LIMIT 0, $limit";
+            }
+            
+            $query = $this->mysqli->query($sql);
+            if($query){
+                $this->result = $this->mysqli->affected_rows;
+                return true;
+            }else{
+                $this->result = $this->mysqli->error;
+                return false;
+            }
+        }
+    }
+
     private function tableExists($table){
         if($this->mysqli){
             $sql = "SHOW TABLE FROM $this->db_name";

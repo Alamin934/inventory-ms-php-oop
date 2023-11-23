@@ -12,9 +12,9 @@
 		<div class="overlay"><div class="loader"></div></div>
 
 
-		<div class="container mt-5 pt-5" id="index">
+		<div class="container mt-2" id="index">
 			<div class="card mx-auto" style="width: 40rem;">
-				<div class="card-header">Register</div>
+				<div class="card-header"><h3>User Registration</h3></div>
 					<div class="card-body">
 						<form id="register_form" onsubmit="return false" autocomplete="off">
 							<div class="form-group mb-3">
