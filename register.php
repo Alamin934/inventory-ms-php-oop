@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION["username"])){
+	header("Location: http://localhost/php_project/inv_project/dashboard.php");
+}
+?>
 <!doctype html>
 <html lang="en">
     <head>

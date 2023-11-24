@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("Asia/Dhaka");
 class Database{
     private $host = "localhost";
     private $user = "root";
@@ -28,6 +29,22 @@ class Database{
         }
     }
 
+    public function update($table, $data=[],$where = null){
+        if($this->tableExists($table)){
+            foreach($data as $key=>$value){
+                $sql = "UPDATE $table SET $key = '$value'";
+                if($where != null){
+                    $sql.= " WHERE $where";
+                }
+                if($this->mysqli->query($sql)){
+                    array_push($this->result, $this->mysqli->affected_rows);
+                }else{
+                    array_push($this->result, $this->mysqli->error);
+                }
+            }
+        }
+    }
+
     public function select($table, $row="*", $join=null, $where=null, $orderBy=null, $limit=null){
         if($this->tableExists($table)){
             $sql = "SELECT $row FROM $table";
@@ -43,7 +60,6 @@ class Database{
             if($limit != null){
                 $sql.= " LIMIT 0, $limit";
             }
-            
             $query = $this->mysqli->query($sql);
             if($query){
                 $this->result = $query->fetch_all(MYSQLI_ASSOC);

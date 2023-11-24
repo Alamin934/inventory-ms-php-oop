@@ -1,1 +1,1 @@
-.alert.alert-success {position: relative;width: 35%;right: 0;top: 0;display: none;}
+.alert.alert-success {position: absolute;width: 30%;left: 0;top: 50%;display: none;z-index: 111;}

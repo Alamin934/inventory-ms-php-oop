@@ -1,3 +1,8 @@
+<?php 
+// session_start();
+$username = $_SESSION["first_name"];
+
+?>
 <nav class="navbar navbar-expand-md bg-primary mb-5" data-bs-theme="dark">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">INMS</a>
@@ -10,7 +15,7 @@
                     <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-home"></i> Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="fa-solid fa-user"></i> Log Out</a>
+                    <a class="nav-link" href="logout.php"><i class="fa-solid fa-user"></i><span> Hi, <?php echo $username;?></span>, Log Out</a>
                 </li>
             </ul>
         </div>

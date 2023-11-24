@@ -1,3 +1,9 @@
+<?php
+session_start();
+if(isset($_SESSION["username"])){
+	header("Location: http://localhost/php_project/inv_project/dashboard.php");
+}
+?>
 <!doctype html>
 <html lang="en">
     <head>
@@ -6,11 +12,15 @@
         <title>Inventory Management System</title>
         <link rel="stylesheet" href="includes/fontawesome/css/all.min.css">
         <link rel="stylesheet" href="includes/css/bootstrap.min.css">
+        <link rel="stylesheet" href="includes/css/style.css">
     </head>
     <body> 
 
         <!-- Navbar -->
         <?php //include_once("includes/templates/navbar.php"); ?>
+
+        <!-- Message -->
+        <div class="alert alert-success" role="alert"></div>
 
         <!-- Login Form -->
         <div class="card mx-auto mt-5" style="width: 25rem;">
