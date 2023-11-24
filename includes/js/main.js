@@ -34,7 +34,12 @@ $(document).ready(function () {
             data: {log_email: email, pass: pass},
             success: function (log_response) {
                 if(log_response == 1){
-                    $(".alert").fadeIn().html("Logged In Successfully");
+                    var seconds = 5;
+                    function incrementSeconds() {
+                        seconds -= 1;
+                        $(".alert").fadeIn().html("Logged In Successfully " + seconds);
+                    }
+                    var cancel = setInterval(incrementSeconds, 1000);
                     setTimeout(() => {
                         $(".alert").fadeOut()
                         window.location.replace(domain+"/dashboard.php");

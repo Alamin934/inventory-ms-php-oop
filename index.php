@@ -21,6 +21,7 @@ if(isset($_SESSION["username"])){
 
         <!-- Message -->
         <div class="alert alert-success" role="alert"></div>
+        <!-- <div class="alert alert-success time" role="alert"></div> -->
 
         <!-- Login Form -->
         <div class="card mx-auto mt-5" style="width: 25rem;">
