@@ -13,7 +13,7 @@ class Database{
         if($this->mysqli->connect_error){
            die("Database Connection Faild".$this->mysqli->connect_error);
         }
-
+        // echo "connected";
     }
 
     public function insert($table, $data=[]){

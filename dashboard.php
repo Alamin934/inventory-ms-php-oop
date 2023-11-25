@@ -1,23 +1,13 @@
 <?php
-session_start();
-if(!isset($_SESSION["username"])){
-	header("Location: http://localhost/php_project/inv_project");
-}
+	session_start();
+	if(!isset($_SESSION["username"])){
+		header("Location: http://localhost/php_project/inv_project");
+	}
 ?>
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inventory Management System</title>
-        <link rel="stylesheet" href="includes/fontawesome/css/all.min.css">
-        <link rel="stylesheet" href="includes/css/bootstrap.min.css">
-    </head>
-    <body> 
-
-        <!-- Navbar -->
-        <?php include_once("includes/templates/navbar.php"); ?>
-
+<?php include 'includes/templates/header.php'; ?>
+<!-- Navbar -->
+<?php include_once("includes/templates/navbar.php"); ?>
+		
 		<div class="container mb-4">
 			<div class="row">
 				<div class="col-md-4">
@@ -25,9 +15,9 @@ if(!isset($_SESSION["username"])){
 					<img class="card-img-top mx-auto" style="width:60%;" src="includes/images/user.png" alt="Card image cap">
 					<div class="card-body">
 						<h4 class="card-title">Profile Info</h4>
-						<p class="card-text"><i class="fa fa-user">&nbsp;</i>Rizwan Khan</p>
-						<p class="card-text"><i class="fa fa-user">&nbsp;</i>Admin</p>
-						<p class="card-text">Last Login : xxxx-xx-xx</p>
+						<p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo $_SESSION["first_name"]." ". $_SESSION["last_name"]; ?></p>
+						<p class="card-text"><i class="fa fa-user">&nbsp;</i><?php echo ($_SESSION["user_type"] == 1) ? "Admin" : "Normal User"; ?></p>
+						<p class="card-text">Last Login : <?php echo $_SESSION["last_login"]; ?></p>
 						<a href="#" class="btn btn-primary"><i class="fa fa-edit">&nbsp;</i>Edit Profile</a>
 					</div>
 					</div>
@@ -55,7 +45,7 @@ if(!isset($_SESSION["username"])){
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container mb-5">
 			<div class="row">
 				<!-- Category -->
 				<div class="col-md-4">
@@ -103,11 +93,4 @@ if(!isset($_SESSION["username"])){
 			include_once("includes/templates/product.php");
 		?>
 
-
-
-        
-        <script src="includes/js/jquery-3.7.1.min.js"></script>
-        <script src="includes/js/bootstrap.bundle.min.js"></script>
-        <script src="includes/js/main.js"></script>
-    </body>
-</html>
+<?php include 'includes/templates/footer.php'; ?>

@@ -12,7 +12,7 @@ $username = $_SESSION["first_name"];
         <div class="collapse navbar-collapse" id="toggleButton">
             <ul class="navbar-nav ms-auto my-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#"><i class="fa-solid fa-home"></i> Home</a>
+                    <a class="nav-link active" aria-current="page" href="http://localhost/php_project/inv_project/dashboard.php"><i class="fa-solid fa-home"></i> Dashboard</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="logout.php"><i class="fa-solid fa-user"></i><span> Hi, <?php echo $username;?></span>, Log Out</a>

@@ -1,7 +1,9 @@
+<?php include "database/database.php"; ?>
 <!-- Category Modal -->
 <div class="modal fade" id="addNewCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+        <div class="alert alert-success add_cat" role="alert" style="top:0; width:50%"></div>
             <!-- Modal Header -->
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Category</h1>
@@ -9,16 +11,24 @@
             </div>
             <!-- Modal Content -->
             <div class="modal-body">
-                <form id="category_form">
+                <form id="add_category">
                     <div class="form-group mb-3">
                         <label>Category Name</label>
-                        <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="emailHelp" placeholder="Enter email">
+                        <input type="text" class="form-control" name="category_name" id="category_name" aria-describedby="emailHelp" placeholder="Enter Category Name">
                         <small id="cat_error" class="form-text text-muted"></small>
                     </div>
                     <div class="form-group mb-3">
-                        <label for="exampleInputPassword1">Parent Category</label>
+                        <label for="exampleInputPassword1">Select Parent Category</label>
                         <select class="form-control" id="parent_cat" name="parent_cat">
-
+                            <option value="0" selected>Select</optoin>
+                        <?php
+                            $obj = new Database();
+                            $obj->select("category", "*", null, null, null, null);
+                            $result = $obj->get_result();
+                            foreach($result as $cat){
+                                echo "<option value='{$cat['cat_id']}'>{$cat['category_name']}</option>";
+                            }
+                        ?>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-primary">Add Category</button>

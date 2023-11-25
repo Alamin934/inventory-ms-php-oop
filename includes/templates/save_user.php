@@ -83,7 +83,9 @@
                         session_start();
                         $_SESSION["username"] = $row["username"];
                         $_SESSION["first_name"] = $row["first_name"];
+                        $_SESSION["last_name"] = $row["last_name"];
                         $_SESSION["user_type"] = $row["user_type"];
+                        $_SESSION["last_login"] = $row["last_login"];
 
                         $data = ['last_login'=>date('d-M-Y H:i:s')];
                         $obj->update("users",$data,"email = '{$email}'");
