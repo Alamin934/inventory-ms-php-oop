@@ -1,4 +1,4 @@
-<?php include "database/database.php"; ?>
+
 <!-- Category Modal -->
 <div class="modal fade" id="addNewCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -21,7 +21,6 @@
                         <select class="form-control" id="parent_cat" name="parent_cat">
                             <option value="0" selected>Select</optoin>
                         <?php
-                            $obj = new Database();
                             $obj->select("category", "*", null, null, null, null);
                             $result = $obj->get_result();
                             foreach($result as $cat){

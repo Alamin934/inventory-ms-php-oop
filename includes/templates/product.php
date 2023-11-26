@@ -9,28 +9,44 @@
             </div>
             <!-- Modal Content -->
             <div class="modal-body">
-                <form id="product_form">
+                <form id="add_product">
                     <div class="form-group mb-3">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name">
                     </div>
                     <div class="form-group mb-3">
                         <label>Category</label>
-                        <select class="form-control" id="select_cat" name="select_cat" required/>
+                        <select class="form-control" id="select_cat" name="select_cat"/>
+                            <option selected disabled>Select Category</optoin>
+                        <?php
+                            $obj->select("category", "*", null, null, null, null);
+                            $result = $obj->get_result();
+                            foreach($result as $cat){
+                                echo "<option value='{$cat['cat_id']}'>{$cat['category_name']}</option>";
+                            }
+                        ?>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label>Brand</label>
-                        <select class="form-control" id="select_brand" name="select_brand" required/>
+                        <select class="form-control" id="select_brand" name="select_brand"/>
+                            <option selected disabled>Select Brand</optoin>
+                        <?php
+                            $obj->select("brands", "*", null, null, null, null);
+                            $result = $obj->get_result();
+                            foreach($result as $brand){
+                                echo "<option value='{$brand['brand_id']}'>{$brand['brand_name']}</option>";
+                            }
+                        ?>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label>Product Price</label>
-                        <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>
+                        <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product"/>
                     </div>
                     <div class="form-group mb-3">
                         <label>Quantity</label>
-                        <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required/>
+                        <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity"/>
                     </div>
                     <button type="submit" class="btn btn-success">Add Product</button>
                 </form>
@@ -58,25 +74,25 @@
                 <form id="product_form">
                     <div class="form-group mb-3">
                         <label>Product Name</label>
-                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name" required>
+                        <input type="text" class="form-control" name="product_name" id="product_name" placeholder="Enter Product Name">
                     </div>
                     <div class="form-group mb-3">
                         <label>Category</label>
-                        <select class="form-control" id="select_cat" name="select_cat" required/>
+                        <select class="form-control" id="select_cat" name="select_cat"/>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label>Brand</label>
-                        <select class="form-control" id="select_brand" name="select_brand" required/>
+                        <select class="form-control" id="select_brand" name="select_brand"/>
                         </select>
                     </div>
                     <div class="form-group mb-3">
                         <label>Product Price</label>
-                        <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product" required/>
+                        <input type="text" class="form-control" id="product_price" name="product_price" placeholder="Enter Price of Product"/>
                     </div>
                     <div class="form-group mb-3">
                         <label>Quantity</label>
-                        <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity" required/>
+                        <input type="text" class="form-control" id="product_qty" name="product_qty" placeholder="Enter Quantity"/>
                     </div>
                     <button type="submit" class="btn btn-success">Update Product</button>
                 </form>

@@ -139,6 +139,33 @@ $(document).ready(function () {
     });
 
     // Add Product
-    
+    $(document).on("submit","#add_product", function(e){
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: `${domain}/includes/manage_products.php`,
+            data: $("#add_product").serialize(),
+            success: function (response) {
+                if(response == 1){
+                    $(".message").removeClass('alert-danger').addClass('alert-success').fadeIn().html("Product Insert Successfully");
+                    $("#add_product").trigger("reset");
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }else if(response == 0){
+                    $(".message").removeClass('alert-success').addClass('alert-danger').fadeIn().html("Product Insert Failed");
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }else{
+                    $(".message").removeClass('alert-success').addClass('alert-danger').fadeIn().html(response);
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }
+            }
+        });
+    });
 
 });

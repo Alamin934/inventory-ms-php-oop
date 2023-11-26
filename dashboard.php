@@ -1,4 +1,6 @@
 <?php
+	include "database/database.php";
+	$obj = new Database();
 	session_start();
 	if(!isset($_SESSION["username"])){
 		header("Location: http://localhost/php_project/inv_project");
