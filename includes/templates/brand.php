@@ -9,13 +9,13 @@
             </div>
             <!-- Modal Content -->
             <div class="modal-body">
-                <form id="brand_form">
+                <form id="add_brand">
                     <div class="form-group mb-3">
                         <label>Brand Name</label>
                         <input type="text" class="form-control" name="brand_name" id="brand_name" placeholder="Enter Brand Name">
                         <small id="brand_error" class="form-text text-muted"></small>
                     </div>
-                    <button type="submit" class="btn btn-primary">Add Brand</button>
+                    <button type="submit" name="add_brand" class="btn btn-primary">Add Brand</button>
                 </form>
             </div>
             <!-- Modal Action Button -->

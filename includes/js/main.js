@@ -1,7 +1,8 @@
 $(document).ready(function () {
     const domain = "http://localhost/php_project/inv_project";
     // user ragistration
-    $(document).submit("#register_form", function(){
+    $(document).on("submit","#register_form", function(e){
+        e.preventDefault();
         $.ajax({
             type: "POST",
             url: `${domain}/includes/templates/save_user.php?get=registration`,
@@ -31,7 +32,7 @@ $(document).ready(function () {
     });
 
     // User Login
-    $(document).submit("#form_login", function(e){
+    $(document).on("submit","#form_login", function(e){
         e.preventDefault();
         let email = $("#log_email").val();
         let pass = $("#log_password").val();
@@ -70,4 +71,74 @@ $(document).ready(function () {
             }
         });
     });
+
+    // Add Category
+    $(document).on("submit","#add_category", function(e){
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: `${domain}/includes/manage_category.php`,
+            data: $("#add_category").serialize(),
+            success: function (response) {
+                if(response == 1){
+                    $(".message").removeClass('alert-danger').addClass('alert-success').fadeIn().html("Category Insert Successfully");
+                    $("#add_category").trigger("reset");
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }else if(response == 0){
+                    $(".message").fadeIn().html("Category Insert Failed");
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }else{
+                    $(".message").fadeIn().html(response);
+                    setTimeout(() => {
+                        $(".message").fadeOut()
+                    }, 4000);
+                }
+            }
+        });
+    });
+
+    // Add Brand Name
+    $(document).on("submit","#add_brand", function(e){
+        e.preventDefault();
+        let brandName = $("#brand_name").val();
+        if(brandName == ''){
+            $("#brand_name").addClass('border-danger');
+            $("#brand_error").html('<span class="text-danger">Brand Name Can not Empty</span>');
+        }else{
+            $("#brand_name").removeClass('border-danger');
+            $("#brand_error").hide();
+            $.ajax({
+                type: "POST",
+                url: `${domain}/includes/manage_brands.php`,
+                data: {brand_name:brandName},
+                success: function (response) {
+                    if(response == 1){
+                        $(".message").removeClass('alert-danger').addClass('alert-success').fadeIn().html("Brand Name Insert Successfully");
+                        $("#add_brand").trigger("reset");
+                        setTimeout(() => {
+                            $(".message").fadeOut()
+                        }, 4000);
+                    }else if(response == 0){
+                        $(".message").removeClass('alert-success').addClass('alert-danger').fadeIn().html("Brand Name Insert Failed");
+                        setTimeout(() => {
+                            $(".message").fadeOut()
+                        }, 4000);
+                    }else{
+                        $(".message").removeClass('alert-success').addClass('alert-danger').fadeIn().html(response);
+                        setTimeout(() => {
+                            $(".message").fadeOut()
+                        }, 4000);
+                    }
+                }
+            });
+        }
+    });
+
+    // Add Product
+    
+
 });
