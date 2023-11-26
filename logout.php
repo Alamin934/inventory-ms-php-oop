@@ -1,8 +1,10 @@
 <?php 
 session_start();
-session_destroy();
-session_destroy();
+if(isset($_SESSION["username"])){
+    session_unset();
+    session_destroy();
 
-header("Location: http://localhost/php_project/inv_project");
+    header("Location: http://localhost/php_project/inv_project");
+}
 
 

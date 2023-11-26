@@ -3,22 +3,16 @@ session_start();
 if(isset($_SESSION["username"])){
 	header("Location: http://localhost/php_project/inv_project/dashboard.php");
 }
+
+include 'includes/templates/header.php';
 ?>
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Inventory Management System</title>
-        <link rel="stylesheet" href="includes/fontawesome/css/all.min.css">
-        <link rel="stylesheet" href="includes/css/bootstrap.min.css">
-        <link rel="stylesheet" href="includes/css/style.css">
-    </head>
-    <body> 
+
 
 		<div class="overlay"><div class="loader"></div></div>
+		<!-- <span class="loader"></span> -->
 		<!-- Message -->
-        <div class="alert alert-success" role="alert"></div>
+
+        <div class="alert alert-danger register_msg" role="alert"></div>
 
 		<div class="container mt-2" id="index">
 			<div class="card mx-auto" style="width: 40rem;">
@@ -81,9 +75,6 @@ if(isset($_SESSION["username"])){
 				</div>
 			</div>
 		</div>
-        
-		<script src="includes/js/jquery-3.7.1.min.js"></script>
-        <script src="includes/js/bootstrap.bundle.min.js"></script>
-        <script src="includes/js/main.js"></script>
-    </body>
-</html>
+<?php
+include 'includes/templates/footer.php';
+?>

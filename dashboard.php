@@ -7,7 +7,7 @@
 <?php include 'includes/templates/header.php'; ?>
 <!-- Navbar -->
 <?php include_once("includes/templates/navbar.php"); ?>
-		
+		<div class="alert alert-danger add_cat" role="alert"></div>
 		<div class="container mb-4">
 			<div class="row">
 				<div class="col-md-4">

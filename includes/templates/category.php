@@ -3,7 +3,6 @@
 <div class="modal fade" id="addNewCategory" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-        <div class="alert alert-success add_cat" role="alert" style="top:0; width:50%"></div>
             <!-- Modal Header -->
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="staticBackdropLabel">Add New Category</h1>

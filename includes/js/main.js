@@ -8,15 +8,22 @@ $(document).ready(function () {
             data: $("#register_form").serialize(),
             success: function (response) {
                 if(response == 1){
-                    $(".alert").fadeIn().html("User Registration Successfully");
+                    $(".register_msg").removeClass('alert-danger').addClass('alert-success').fadeIn().html("User Registration Successfully");
+                    $(".overlay").show();
                     setTimeout(() => {
-                        $(".alert").fadeOut()
+                        $(".register_msg").fadeOut()
+                        window.location.replace(domain);
                     }, 4000);
                     $("#register_form").trigger("reset");
-                }else{
-                    $(".alert").fadeIn().html("User Registration Failed");
+                }else if(response == 0){
+                    $(".register_msg").fadeIn().html("User Registration Failed");
                     setTimeout(() => {
-                        $(".alert").fadeOut()
+                        $(".register_msg").fadeOut()
+                    }, 4000);
+                }else{
+                    $(".register_msg").fadeIn().html(response);
+                    setTimeout(() => {
+                        $(".register_msg").fadeOut()
                     }, 4000);
                 }
             }
@@ -34,25 +41,30 @@ $(document).ready(function () {
             data: {log_email: email, pass: pass},
             success: function (log_response) {
                 if(log_response == 1){
+
                     var seconds = 5;
                     function incrementSeconds() {
                         seconds -= 1;
-                        $(".alert").fadeIn().html("Logged In Successfully " + seconds);
+                        $(".login_msg").removeClass('alert-danger').addClass('alert-success').fadeIn().html("Logged In Successfully " + seconds);
                     }
                     var cancel = setInterval(incrementSeconds, 1000);
+
+                    $(".overlay").show();
                     setTimeout(() => {
-                        $(".alert").fadeOut()
-                        window.location.replace(domain+"/dashboard.php");
+                        $(".login_msg").fadeOut();
+                        window.location.href = domain+"/dashboard.php";
                     }, 4000);
                 }else if(log_response==0){
-                    $(".alert").fadeIn().html("Logged In Failed");
+                    $(".overlay").hide();
+                    $(".login_msg").fadeIn().html("Logged In Failed");
                     setTimeout(() => {
-                        $(".alert").fadeOut()
+                        $(".login_msg").fadeOut()
                     }, 4000);
                 }else{
-                    $(".alert").fadeIn().html(log_response);
+                    $(".overlay").hide();
+                    $(".login_msg").fadeIn().html(log_response);
                     setTimeout(() => {
-                        $(".alert").fadeOut()
+                        $(".login_msg").fadeOut()
                     }, 4000);
                 }
             }

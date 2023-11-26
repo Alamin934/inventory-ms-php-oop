@@ -3,23 +3,22 @@
     
     if($_SERVER['REQUEST_METHOD'] == "POST" && $_GET['get']=="registration"){
         // User Registration
-        $reg_msg = "";
         if($_POST['first_name'] == '' || empty($_POST['first_name'])){
-            $reg_msg = "First Name is Empty";
+            echo "First Name is Empty";
         }elseif($_POST['last_name'] == '' || empty($_POST['last_name'])){
-            $reg_msg = "Last Name is Empty";
+            echo "Last Name is Empty";
         }elseif($_POST['username'] == '' || empty($_POST['username'])){
-            $reg_msg = "User Name is Empty";
+            echo "User Name is Empty";
         }elseif($_POST['email'] == '' || empty($_POST['email'])){
-            $reg_msg = "Email is Empty";
+            echo "Email is Empty";
         }elseif($_POST['password1'] == '' || empty($_POST['password1'])){
-            $reg_msg = "Password is Empty";
+            echo "Password is Empty";
         }elseif($_POST['password2'] == '' || empty($_POST['password2'])){
-            $reg_msg = "Re-Enter Password is Empty";
+            echo "Re-Enter Password is Empty";
         }elseif($_POST['password1'] != $_POST['password2']){
-            $reg_msg = "Password and Re-Enter Password Doesn't Matched";
+            echo "Password and Re-Enter Password Doesn't Matched";
         }elseif(!isset($_POST['usertype']) || empty($_POST['usertype'])){
-            $reg_msg = "User Type is Not Set";
+            echo "User Type is Not Set";
         }else{
             $obj = new Database();
             $register_data = [
@@ -42,21 +41,19 @@
             $email_exist = $obj->get_result();
 
             if(!empty($username_exist)){
-                $reg_msg = "Username Already Exists";
+                echo "Username Already Exists";
             }elseif(!empty($email_exist)){
-                $reg_msg = "Email Already Exists";
+                echo "Email Already Exists";
             }else{
                 $obj->insert('users', $register_data);
                 $response = $obj->get_result();
                 if(is_numeric($response[0])){
-                    $reg_msg = 1;
+                    echo 1;
                 }else{
-                    $reg_msg = 0;
+                    echo 0;
                 }
             }
         }
-        echo $reg_msg;
-
     }
 
 
@@ -91,13 +88,12 @@
                         $obj->update("users",$data,"email = '{$email}'");
                         $response = $obj->get_result();
                         if(is_numeric($response[0])){
-                            $log_msg = 1;
+                            echo 1;
                         }else{
-                            $log_msg = 0;
+                            echo 0;
                         }
                     }
                 }
             }
         }
-        echo $log_msg;
     }
